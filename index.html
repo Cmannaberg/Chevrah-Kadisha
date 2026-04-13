@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Chevrah Kadisha — A Newsletter Series</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --gold: #b8952a;
+  --gold-light: #e8c96a;
+  --cream: #faf8f3;
+  --text: #2c2c2c;
+  --muted: #666;
+  --border: #d4c5a0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ── COVER ── */
+#cover {
+  min-height: 100vh;
+  background: var(--navy);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+.cover-heb {
+  font-size: 2.6rem;
+  color: var(--gold-light);
+  direction: rtl;
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.05em;
+}
+#cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  color: var(--gold-light);
+  margin-bottom: 0.3rem;
+}
+.cover-sub { font-size: 1rem; color: #b0bcd0; font-style: italic; margin-bottom: 0.2rem; }
+.cover-shul { font-size: 0.9rem; color: #708090; margin-bottom: 2.5rem; }
+.toc {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(184,149,42,0.35);
+  border-radius: 10px;
+  padding: 1.75rem 2rem;
+  max-width: 540px;
+  width: 100%;
+  text-align: left;
+}
+.toc h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+.toc ol { list-style: none; counter-reset: toc; }
+.toc li { counter-increment: toc; margin-bottom: 0.65rem; }
+.toc li::before {
+  content: counter(toc) ". ";
+  color: var(--gold);
+  font-weight: 700;
+}
+.toc a { color: #d0daf0; text-decoration: none; font-size: 0.97rem; }
+.toc a:hover { color: var(--gold-light); }
+.toc-sub { display: block; font-size: 0.8rem; color: #6a7a92; margin-left: 1.3rem; }
+.cover-hint {
+  margin-top: 2rem;
+  font-size: 0.82rem;
+  color: #5a6a82;
+}
+.cover-hint span {
+  border-bottom: 1.5px solid var(--gold);
+  color: var(--gold-light);
+  padding: 0 3px;
+}
+
+/* ── STICKY NAV ── */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  background: var(--navy);
+  z-index: 200;
+  padding: 0.55rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+}
+.sticky-nav a { color: var(--gold-light); text-decoration: none; font-weight: 600; }
+.sticky-nav .nav-title { color: #8090a8; }
+
+/* ── ARTICLES ── */
+.article {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3.5rem 1.75rem 2rem;
+}
+.art-num {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.article h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--navy);
+  line-height: 1.25;
+}
+.art-heb {
+  font-size: 1.5rem;
+  color: var(--gold);
+  direction: rtl;
+  margin-top: 0.3rem;
+  margin-bottom: 1.5rem;
+}
+.art-rule {
+  border: none;
+  border-top: 2px solid var(--border);
+  margin-bottom: 2rem;
+}
+.article p { margin-bottom: 1.2rem; font-size: 1.02rem; }
+.article h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--navy);
+  font-size: 1.15rem;
+  margin: 2rem 0 0.7rem;
+}
+.article ul { margin: 0 0 1.2rem 1.25rem; }
+.article li { margin-bottom: 0.5rem; font-size: 1.02rem; }
+.article a { color: var(--gold); }
+.art-img {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+}
+.cover-img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+  margin: 1.5rem auto 1.75rem;
+  display: block;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+}
+.article blockquote {
+  background: rgba(184,149,42,0.07);
+  border-left: 4px solid var(--gold);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ── BOTTOM NAV ── */
+.art-nav {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem 1.75rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+}
+.art-nav a { color: var(--gold); text-decoration: none; font-weight: 600; }
+
+/* ── DIVIDER ── */
+.divider {
+  text-align: center;
+  color: var(--gold);
+  letter-spacing: 0.6rem;
+  opacity: 0.45;
+  margin: 2.5rem 0 1rem;
+}
+
+/* ── HEBREW TERMS ── */
+.ht {
+  display: inline;
+  cursor: pointer;
+  background: linear-gradient(to bottom, transparent 55%, rgba(184,149,42,0.2) 55%);
+  border-bottom: 1.5px solid var(--gold);
+  padding: 0 2px;
+  border-radius: 2px;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.ht:hover, .ht:focus { background: rgba(184,149,42,0.18); outline: none; }
+.ht-s { font-size: 1.05em; color: var(--navy); font-weight: 600; }
+.ht-r { font-style: italic; }
+
+/* ── POPUP ── */
+#popup {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: #111d35;
+  color: white;
+  padding: 1rem 1.4rem 1.1rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 36px rgba(0,0,0,0.4);
+  max-width: 340px;
+  width: calc(100% - 2rem);
+  text-align: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  border: 1px solid rgba(184,149,42,0.3);
+}
+#popup.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+#popup .ps { font-size: 1.75rem; direction: rtl; color: var(--gold-light); display: block; margin-bottom: 0.15rem; }
+#popup .pr { font-size: 0.92rem; font-style: italic; color: #9aaac0; display: block; margin-bottom: 0.55rem; }
+#popup .pt { font-size: 0.96rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.55rem; line-height: 1.5; }
+#popup button {
+  position: absolute; top: 0.45rem; right: 0.75rem;
+  background: none; border: none; color: #607080;
+  font-size: 1.1rem; cursor: pointer; line-height: 1;
+}
+
+@media (max-width: 580px) {
+  .article, .art-nav { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .toc { padding: 1.25rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ COVER ══════════════ -->
+<section id="cover">
+  <div class="cover-heb">חֶבְרָה קַדִּישָׁא</div>
+  <h1>The Chevrah Kadisha</h1>
+  <p class="cover-sub">A Monthly Newsletter Series</p>
+  <p class="cover-shul">Written for Temple B'nai Israel and Congregation of Moses Newsletter &nbsp;·&nbsp; By Cary Mannaberg</p>
+  <img src="ARTICLE_ONE_CHEVRAH.jpeg" alt="Chevrah Kadisha — A Very Special Mitzvah" class="cover-img">
+  <nav class="toc">
+    <h2>Articles in This Series</h2>
+    <ol>
+      <li><a href="#art1">What is a Chevrah Kadisha?</a>
+        <span class="toc-sub">An introduction to the Holy Society</span></li>
+      <li><a href="#art2">Taharah — The Purification Ritual</a>
+        <span class="toc-sub">The sacred preparation of the deceased</span></li>
+      <li><a href="#art3">Shmirah — Guarding the Deceased</a>
+        <span class="toc-sub">Keeping vigil from Taharah until burial</span></li>
+      <li><a href="#art4">Tachrichim — Burial Garments</a>
+        <span class="toc-sub">The simple white shrouds of our tradition</span></li>
+      <li><a href="#art5">Chevrah Kadisha Liturgy</a>
+        <span class="toc-sub">Prayers and rituals of the Taharah and Shmirah</span></li>
+      <li><a href="#art6">Honoring the Dead Across Traditions</a>
+        <span class="toc-sub">Comparing Jewish and Islamic funeral practices</span></li>
+    </ol>
+  </nav>
+  <p class="cover-hint">Tap any <span>highlighted Hebrew term</span> to see its meaning.</p>
+</section>
+
+<!-- ══════════════ ARTICLE 1 ══════════════ -->
+<nav class="sticky-nav">
+  <a href="#cover">↑ Contents</a>
+  <span class="nav-title">Chevrah Kadisha Series</span>
+  <a href="#art2">Next →</a>
+</nav>
+<article class="article" id="art1">
+  <div class="art-num">Article One</div>
+  <h2>What is a Chevrah Kadisha?</h2>
+  <div class="art-heb">חֶבְרָה קַדִּישָׁא</div>
+  <hr class="art-rule">
+
+  <p>This is the first in a series of columns to teach about
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society — a community volunteer group that prepares the Jewish deceased for burial and comforts the bereaved"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>
+  and Jewish funeral practices.</p>
+
+  <p>Traditionally, the preparation of the deceased for burial has been taken care of by members of our Jewish community, called a
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society — a community volunteer group dedicated to caring for the Jewish deceased"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>,
+  which means "Holy Society." In Yiddish they are called
+  <span class="ht" tabindex="0" data-s="לאַנדסמאַנשאַפֿטן" data-r="Landsmanshaftn" data-t="Yiddish: mutual-aid fellowships of people from the same hometown or community"><span class="ht-s">לאַנדסמאַנשאַפֿטן</span> <span class="ht-r">Landsmanshaftn</span></span>.</p>
+
+  <p>Why do we do this? It is because we desire to honor the deceased —
+  <span class="ht" tabindex="0" data-s="מֵת" data-r="meit" data-t="A deceased man"><span class="ht-s">מֵת</span> <span class="ht-r">meit</span></span>
+  (man) or
+  <span class="ht" tabindex="0" data-s="מֵתָה" data-r="meitah" data-t="A deceased woman"><span class="ht-s">מֵתָה</span> <span class="ht-r">meitah</span></span>
+  (woman) — with respect and dignity, and to ease the grief of the bereaved family and friends.</p>
+
+  <p>Jewish custom includes a specific traditional ritual to prepare a body for burial. This ritual is called
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — the sacred ritual of washing and preparing the deceased for burial"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  and is performed by members of the
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>.
+  Volunteering to do
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — volunteering for Taharah is considered among the highest acts of loving-kindness"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  is a very special
+  <span class="ht" tabindex="0" data-s="מִצְוָה" data-r="mitzvah" data-t="Commandment or meritorious deed — one of Judaism's 613 commandments; more broadly, any act of loving-kindness"><span class="ht-s">מִצְוָה</span> <span class="ht-r">mitzvah</span></span>,
+  and the ritual is performed for all Jews — observant or not, affiliated or not.</p>
+
+  <p>When there is a death, the
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>
+  is notified, and we quickly assemble a team. This is all done anonymously and with respect. We are midwifing the deceased as the soul moves from this world to the next.</p>
+
+  <p><em>Next month: the Taharah ritual.</em></p>
+  <div class="divider">· · ✦ · ·</div>
+</article>
+<div class="art-nav"><a href="#cover">↑ Contents</a><a href="#art2">Next Article →</a></div>
+
+<!-- ══════════════ ARTICLE 2 ══════════════ -->
+<nav class="sticky-nav">
+  <a href="#art1">← Article 1</a>
+  <span class="nav-title">Chevrah Kadisha Series</span>
+  <a href="#art3">Next →</a>
+</nav>
+<article class="article" id="art2">
+  <div class="art-num">Article Two</div>
+  <h2>Taharah — The Purification Ritual</h2>
+  <div class="art-heb">טָהֳרָה</div>
+  <hr class="art-rule">
+  <img src="ARTICLE_TWO_TAHARAH.jpeg" alt="Taharah — A Purification Ritual" class="art-img">
+
+  <p>One of the main roles of the
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>
+  is to perform the ancient ritual of
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — the word means 'pure' or 'purify'; it is the central ritual of the Chevrah Kadisha"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>.
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — from the Hebrew root meaning pure or purify"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  means "pure" or "purify."</p>
+
+  <p>We have other rituals in our lives to purify ourselves — for example,
+  <span class="ht" tabindex="0" data-s="נְטִילַת יָדַיִם" data-r="Netilat Yadayim" data-t="Ritual hand washing — the ceremonial washing of hands performed before meals, prayer, and other sacred occasions"><span class="ht-s">נְטִילַת יָדַיִם</span> <span class="ht-r">Netilat Yadayim</span></span>,
+  the ritual washing of hands before meals, and immersing in a
+  <span class="ht" tabindex="0" data-s="מִקְוֶה" data-r="mikvah" data-t="Ritual immersion pool — used for spiritual purification at key transitions in Jewish life; the Taharah is considered the soul's final mikvah"><span class="ht-s">מִקְוֶה</span> <span class="ht-r">mikvah</span></span>.
+  The
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — the final and most profound act of spiritual cleansing"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  ritual is a spiritual washing — the final
+  <span class="ht" tabindex="0" data-s="מִקְוֶה" data-r="mikvah" data-t="Ritual immersion — the Taharah is considered the soul's final immersion before its journey"><span class="ht-s">מִקְוֶה</span> <span class="ht-r">mikvah</span></span>.</p>
+
+  <p>The
+  <span class="ht" tabindex="0" data-s="חֶבְרָה" data-r="Chevrah" data-t="Society or fellowship — short for Chevrah Kadisha, the Holy Society"><span class="ht-s">חֶבְרָה</span> <span class="ht-r">Chevrah</span></span>
+  assembles a team of four to five members as quickly as possible after a person dies. This is done anonymously out of respect. A male team is provided for a man, and a female team for a woman. The
+  <span class="ht" tabindex="0" data-s="חֶבְרָה" data-r="Chevrah" data-t="Society or fellowship — short for Chevrah Kadisha"><span class="ht-s">חֶבְרָה</span> <span class="ht-r">Chevrah</span></span>
+  say prayers, then carefully and respectfully cleanse the
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="meit / meitah" data-t="The deceased — meit for a man, meitah for a woman"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">meit / meitah</span></span>.</p>
+
+  <p>Next, the actual
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — performed by slowly pouring living waters over the deceased from head to toe"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  is performed by slowly pouring waters over the
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="meit / meitah" data-t="The deceased — meit for a man, meitah for a woman"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">meit / meitah</span></span>
+  from head to toe. This is
+  <span class="ht" tabindex="0" data-s="מַיִם חַיִּים" data-r="Mayim Chaim" data-t="Living waters — flowing water used in the Taharah, symbolizing life and spiritual renewal"><span class="ht-s">מַיִם חַיִּים</span> <span class="ht-r">Mayim Chaim</span></span>,
+  the living waters. Then the
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="meit / meitah" data-t="The deceased — meit for a man, meitah for a woman"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">meit / meitah</span></span>
+  is dressed in the traditional
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="tachrichim" data-t="Burial shrouds — simple white linen garments with no fasteners, symbolizing purity and equality in death"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">tachrichim</span></span>
+  — the burial shrouds — and then placed in the casket.</p>
+
+  <p>Our
+  <span class="ht" tabindex="0" data-s="חֶבְרָה" data-r="Chevrah" data-t="Society or fellowship — short for Chevrah Kadisha"><span class="ht-s">חֶבְרָה</span> <span class="ht-r">Chevrah</span></span>
+  is a volunteer group, and we will prepare any Jewish person for burial. Please contact us any time as you or a loved one is preparing for your final days, to learn more about this service and to express your wishes.</p>
+
+  <p><em>Next installment: the ritual of Shmirah.</em></p>
+  <div class="divider">· · ✦ · ·</div>
+</article>
+<div class="art-nav"><a href="#art1">← Article 1</a><a href="#art3">Next Article →</a></div>
+
+<!-- ══════════════ ARTICLE 3 ══════════════ -->
+<nav class="sticky-nav">
+  <a href="#art2">← Article 2</a>
+  <span class="nav-title">Chevrah Kadisha Series</span>
+  <a href="#art4">Next →</a>
+</nav>
+<article class="article" id="art3">
+  <div class="art-num">Article Three</div>
+  <h2>Shmirah — Guarding the Deceased</h2>
+  <div class="art-heb">שְׁמִירָה</div>
+  <hr class="art-rule">
+  <img src="ARTICLE_THREE_SHMIRAH.jpeg" alt="Shmirah — Guarding the Deceased" class="art-img">
+
+  <p>
+  <span class="ht" tabindex="0" data-s="שְׁמִירָה" data-r="Shmirah" data-t="Guarding or watching — the sacred practice of staying with the deceased from the completion of Taharah until burial, ensuring they are never alone"><span class="ht-s">שְׁמִירָה</span> <span class="ht-r">Shmirah</span></span>,
+  meaning "guarding," is a sacred Jewish practice in which we sit with a deceased person from the completion of
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — the ritual preparation of the deceased for burial"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  until burial, ensuring they are never alone. This ancient tradition demonstrates profound respect for the deceased and offers comfort to the soul during its transition.</p>
+
+  <p>The practice is typically performed in two-hour shifts by volunteers known as
+  <span class="ht" tabindex="0" data-s="שׁוֹמְרִים" data-r="shomrim" data-t="Guardians — the plural of shomer; volunteers who keep vigil with the deceased, often reciting Psalms"><span class="ht-s">שׁוֹמְרִים</span> <span class="ht-r">shomrim</span></span>
+  (guardians). During these shifts, guardians often recite Psalms, providing both a physical presence and spiritual comfort to the deceased. After the
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society — the burial society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>
+  completes the
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — the ritual preparation of the deceased"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>,
+  members continue the vigil until the funeral. This service is performed voluntarily and anonymously, though families may also invite close friends or family members to participate as
+  <span class="ht" tabindex="0" data-s="שׁוֹמְרִים" data-r="shomrim" data-t="Guardians — volunteers who keep vigil with the deceased"><span class="ht-s">שׁוֹמְרִים</span> <span class="ht-r">shomrim</span></span>.</p>
+
+  <h3>Why Shmirah Matters</h3>
+  <ul>
+    <li><strong>Honor and Dignity:</strong>
+    <span class="ht" tabindex="0" data-s="שְׁמִירָה" data-r="Shmirah" data-t="Guarding — one of the highest mitzvahs, because the deceased cannot reciprocate; it is a purely selfless act of loving-kindness"><span class="ht-s">שְׁמִירָה</span> <span class="ht-r">Shmirah</span></span>
+    is considered one of the highest
+    <span class="ht" tabindex="0" data-s="מִצְווֹת" data-r="mitzvot" data-t="Commandments or good deeds — the plural of mitzvah; acts of religious duty and loving-kindness"><span class="ht-s">מִצְווֹת</span> <span class="ht-r">mitzvot</span></span>
+    because it is a pure act of kindness — the deceased cannot reciprocate, making it a truly selfless deed.</li>
+    <li><strong>Comfort for the Bereaved:</strong> Knowing their loved one is being cared for and not left alone brings profound comfort to grieving families.</li>
+    <li><strong>Spiritual Guidance:</strong> The presence of the
+    <span class="ht" tabindex="0" data-s="שׁוֹמֵר" data-r="shomer" data-t="Guardian — a single volunteer who keeps vigil with the deceased (plural: shomrim)"><span class="ht-s">שׁוֹמֵר</span> <span class="ht-r">shomer</span></span>
+    and the recitation of sacred texts help guide the soul on its journey from this world to the next.</li>
+  </ul>
+
+  <p><em>Next month:
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="Tachrichim" data-t="Burial shrouds — the simple white linen garments in which the deceased is dressed"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">Tachrichim</span></span>
+  — burial shrouds.</em></p>
+  <div class="divider">· · ✦ · ·</div>
+</article>
+<div class="art-nav"><a href="#art2">← Article 2</a><a href="#art4">Next Article →</a></div>
+
+<!-- ══════════════ ARTICLE 4 ══════════════ -->
+<nav class="sticky-nav">
+  <a href="#art3">← Article 3</a>
+  <span class="nav-title">Chevrah Kadisha Series</span>
+  <a href="#art5">Next →</a>
+</nav>
+<article class="article" id="art4">
+  <div class="art-num">Article Four</div>
+  <h2>Tachrichim — Burial Garments</h2>
+  <div class="art-heb">תַּכְרִיכִים</div>
+  <hr class="art-rule">
+
+  <p>Our
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>
+  follows the Jewish tradition of burying the deceased in simple white linen garments called
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="tachrichim" data-t="Burial shrouds — simple white garments made of cotton, muslin, or linen, with no zippers, fasteners, buttons, or metal"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">tachrichim</span></span>.
+  They are made from cotton, muslin, or linen with no zippers, fasteners, buttons, or metal.</p>
+
+  <p>
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="Tachrichim" data-t="Burial shrouds — patterned after portions of the High Priest's garments worn in the Temple"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">Tachrichim</span></span>
+  are created to parallel portions of what the High Priest wore during the time of the Temple. Yet the simplicity is to remind us to be humble.
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="Tachrichim" data-t="Burial shrouds — made without pockets, reminding us that we carry nothing material into the next world"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">Tachrichim</span></span>
+  do not have pockets, to remind us that we carry nothing material with us when we leave the physical world.</p>
+
+  <p>The outfit is similar for men and women, and consists of closed-foot pants with a tie at the waist, a shirt with a tie at the neck, a jacket with a collar and a tie at the neck, sometimes an apron for a woman, a face cover and bonnet for a woman, and a head cover for men. There are ties around the legs and a belt around the waist. Some people choose to be wrapped in their favorite
+  <span class="ht" tabindex="0" data-s="טַלִּית" data-r="tallit" data-t="Prayer shawl — a fringed garment worn during prayer; some choose to be buried wrapped in their own tallit"><span class="ht-s">טַלִּית</span> <span class="ht-r">tallit</span></span>.
+  Finally, a large sheet is wrapped around the
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="meit / meitah" data-t="The deceased — meit for a man, meitah for a woman"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">meit / meitah</span></span>,
+  like swaddling a baby, before they are placed in the casket.</p>
+
+  <p>The
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="meit / meitah" data-t="The deceased — dressed after the Taharah purification ritual has been completed"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">meit / meitah</span></span>
+  is dressed by the
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society — the burial society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>
+  after they have performed the
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="taharah" data-t="Purification — the ritual washing and preparation that precedes dressing"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">taharah</span></span>
+  ritual. Dressing the
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="meit / meitah" data-t="The deceased — meit for a man, meitah for a woman"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">meit / meitah</span></span>
+  is called
+  <span class="ht" tabindex="0" data-s="הַלְבָּשָׁה" data-r="halbasha" data-t="Dressing — the ritual act of clothing the deceased in the tachrichim"><span class="ht-s">הַלְבָּשָׁה</span> <span class="ht-r">halbasha</span></span>
+  (dressing). When we dress our dead, we tie special knots representing the names of
+  <span class="ht" tabindex="0" data-s="אֲדֹנָי" data-r="Adonai" data-t="The Lord — one of the sacred names of God in Jewish tradition; the knots tied in the tachrichim represent this name"><span class="ht-s">אֲדֹנָי</span> <span class="ht-r">Adonai</span></span>.
+  Everything we do during this ritual is to honor the dignity and holiness of the deceased.</p>
+
+  <p>Before dressing, we say a prayer called
+  <span class="ht" tabindex="0" data-s="שׂוֹשׂ אָשִׂישׂ" data-r="Sos Assis" data-t='"I will greatly rejoice" — a prayer drawn from Isaiah 61:10 and Zechariah, recited while dressing the deceased in tachrichim'><span class="ht-s">שׂוֹשׂ אָשִׂישׂ</span> <span class="ht-r">Sos Assis</span></span>,
+  with passages from Isaiah and Zechariah.</p>
+
+  <p>While most
+  <span class="ht" tabindex="0" data-s="חֶבְרוֹת קַדִּישָׁא" data-r="Chevrot Kadisha" data-t="Holy Societies — the plural of Chevrah Kadisha; burial societies across different communities"><span class="ht-s">חֶבְרוֹת קַדִּישָׁא</span> <span class="ht-r">Chevrot Kadisha</span></span>
+  and funeral homes purchase
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="tachrichim" data-t="Burial shrouds — available from commercial suppliers or sewn locally by the community"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">tachrichim</span></span>
+  from Rose Solomon, a commercial supplier in Brooklyn, there is a growing trend for
+  <span class="ht" tabindex="0" data-s="חֶבְרוֹת קַדִּישָׁא" data-r="Chevrot Kadisha" data-t="Holy Societies — some are reviving the tradition of sewing tachrichim locally"><span class="ht-s">חֶבְרוֹת קַדִּישָׁא</span> <span class="ht-r">Chevrot Kadisha</span></span>
+  to revive the practice of sewing
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="tachrichim" data-t="Burial shrouds — sewing patterns available from Threads of Tradition"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">tachrichim</span></span>
+  locally. Sewing patterns are available via <a href="http://www.threadsoftradition.org/tachrichim.php" target="_blank">Threads of Tradition</a>.
+  To purchase
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="tachrichim" data-t="Burial shrouds — contact Rose Solomon Company to purchase in any quantity"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">tachrichim</span></span>
+  in any amount, contact Rose Solomon at: <a href="mailto:RoseSolomonCompany@gmail.com">RoseSolomonCompany@gmail.com</a>.</p>
+
+  <p><em>Next month: the liturgy of the
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>.</em></p>
+  <div class="divider">· · ✦ · ·</div>
+</article>
+<div class="art-nav"><a href="#art3">← Article 3</a><a href="#art5">Next Article →</a></div>
+
+<!-- ══════════════ ARTICLE 5 ══════════════ -->
+<nav class="sticky-nav">
+  <a href="#art4">← Article 4</a>
+  <span class="nav-title">Chevrah Kadisha Series</span>
+  <a href="#art6">Next →</a>
+</nav>
+<article class="article" id="art5">
+  <div class="art-num">Article Five &nbsp;·&nbsp; April 2026</div>
+  <h2>Chevrah Kadisha Liturgy</h2>
+  <div class="art-heb">לִיטוּרְגִיָּה</div>
+  <hr class="art-rule">
+
+  <p>The
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>
+  conducts two main functions: the
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — the preparation of the deceased for burial"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  — the preparation of the deceased for burial — and the
+  <span class="ht" tabindex="0" data-s="שְׁמִירָה" data-r="Shmirah" data-t="Guarding — the watching over of the deceased until the funeral"><span class="ht-s">שְׁמִירָה</span> <span class="ht-r">Shmirah</span></span>
+  — the watching and guarding of the deceased until the funeral. Both functions have a rich tradition of prayers in both Hebrew and English, composed of Psalms, passages from Song of Songs, and sections from prophets like Isaiah. The prayers have value for both the people doing the holy work and for the soul of the deceased.</p>
+
+  <p>The
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — begins when the team assembles at the funeral home, usually within two days of death"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  begins when the team assembles at the funeral home, usually within two days of death. Many urgent phone calls and texts have been made, and the team has had to adjust their daily activities to honor the person they will be spending a few intimate hours with. The first prayers are said in the lobby as we become grounded and prepare ourselves for holy work.</p>
+
+  <p>When we enter the room, we see the deceased on the table, covered with a sheet. We begin with a prayer asking the
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="Meit / Meitah" data-t="The deceased — we address them directly, asking forgiveness for any mistakes and promising to proceed with dignity and respect"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">Meit / Meitah</span></span>
+  to forgive us if we make any mistakes, and to let the
+  <span class="ht" tabindex="0" data-s="נְשָׁמָה" data-r="Neshamah" data-t="Soul — grammatically feminine in Hebrew; the divine spark within each person, now journeying beyond its incarnation"><span class="ht-s">נְשָׁמָה</span> <span class="ht-r">Neshamah</span></span>
+  (the soul, which is grammatically feminine in Hebrew) know that we will conduct ourselves with dignity, modesty, honor, and respect.</p>
+
+  <p>We begin by washing our hands for cleanliness and ritual purity, then recite the Prayer for Compassion —
+  <span class="ht" tabindex="0" data-s="חָמוֹל" data-r="Chamol" data-t='"Have compassion" — the Prayer for Compassion, in which we speak the name of the deceased and pray: "May their Soul and Spirit rest with the Righteous"'><span class="ht-s">חָמוֹל</span> <span class="ht-r">Chamol</span></span>
+  — where we speak the name of the deceased and say: "May their Soul and Spirit rest with the Righteous."</p>
+
+  <p>As we wash the
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="Meit / Meitah" data-t="The deceased — the team works in silence as one member reads or chants prayers, Psalms, and passages from Song of Songs"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">Meit / Meitah</span></span>,
+  we work silently as one of the team reads or chants the prayers, readings from Song of Songs and Psalms. We chant words of comfort and confidence to the
+  <span class="ht" tabindex="0" data-s="נְשָׁמָה" data-r="Neshamah" data-t="Soul — now expanding beyond the confines of its incarnation, being accompanied with words of comfort"><span class="ht-s">נְשָׁמָה</span> <span class="ht-r">Neshamah</span></span>,
+  who is now expanding beyond the confines of her incarnation.</p>
+
+  <p>After washing, we prepare for the ritual of living waters — the
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — the pouring of 24 quarts of water from head to toe while proclaiming the deceased pure"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>.
+  As we take turns pouring 24 quarts of water from head to toe, we each say or chant three times:</p>
+
+  <blockquote>
+    <p style="font-size:1.55rem; direction:rtl; color:var(--navy); font-weight:600; margin-bottom:0.5rem;">
+      טְהוֹרָה הִיא &nbsp;·&nbsp; טָהוֹר הוּא &nbsp;·&nbsp; טְהוֹרִים הֵם
+    </p>
+    <p style="margin-bottom:0.5rem;">
+      <span class="ht" tabindex="0" data-s="טְהוֹרָה הִיא" data-r="Tahoráh Hi" data-t='"She is pure" — declared three times when the deceased is a woman'><span class="ht-s">טְהוֹרָה הִיא</span> <span class="ht-r">Tahoráh Hi</span></span>
+      &nbsp;·&nbsp;
+      <span class="ht" tabindex="0" data-s="טָהוֹר הוּא" data-r="Tahor Hu" data-t='"He is pure" — declared three times when the deceased is a man'><span class="ht-s">טָהוֹר הוּא</span> <span class="ht-r">Tahor Hu</span></span>
+      &nbsp;·&nbsp;
+      <span class="ht" tabindex="0" data-s="טְהוֹרִים הֵם" data-r="Tehorim Hem" data-t='"They are pure" — a gender-inclusive declaration of purity'><span class="ht-s">טְהוֹרִים הֵם</span> <span class="ht-r">Tehorim Hem</span></span>
+    </p>
+    <p style="font-style:italic; color:var(--muted); font-size:0.95rem;">"She is Pure! &nbsp;·&nbsp; He is Pure! &nbsp;·&nbsp; They are Pure!"</p>
+  </blockquote>
+
+  <p>After drying, we dress the
+  <span class="ht" tabindex="0" data-s="מֵת / מֵתָה" data-r="Meit / Meitah" data-t="The deceased — dressed in tachrichim and then gently placed in the casket"><span class="ht-s">מֵת / מֵתָה</span> <span class="ht-r">Meit / Meitah</span></span>
+  in
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="Tachrichim" data-t="Burial shrouds — the simple white linen garments"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">Tachrichim</span></span>
+  and then place them gently in the casket. As we dress the deceased, we say the
+  <span class="ht" tabindex="0" data-s="שׂוֹשׂ אָשִׂישׂ" data-r="Sos Assis" data-t='"I will greatly rejoice" — a prayer from Isaiah 61:10 and Zechariah, recited while dressing the deceased'><span class="ht-s">שׂוֹשׂ אָשִׂישׂ</span> <span class="ht-r">Sos Assis</span></span>
+  prayer. Before placing the deceased in the casket, we send the
+  <span class="ht" tabindex="0" data-s="נְשָׁמָה" data-r="Neshamah" data-t="Soul — sent on her journey with the words of the Priestly Blessing"><span class="ht-s">נְשָׁמָה</span> <span class="ht-r">Neshamah</span></span>
+  on her journey with the Priestly Blessing.</p>
+
+  <p>We end by saying the name of the deceased and asking for forgiveness for any act or omission that did not show respect, or that in any way might have caused offense.</p>
+
+  <p>During the
+  <span class="ht" tabindex="0" data-s="שְׁמִירָה" data-r="Shmirah" data-t="Guarding — a quiet, meditative vigil without the formal structure of the Taharah"><span class="ht-s">שְׁמִירָה</span> <span class="ht-r">Shmirah</span></span>,
+  members of the
+  <span class="ht" tabindex="0" data-s="חֶבְרָה קַדִּישָׁא" data-r="Chevrah Kadisha" data-t="Holy Society"><span class="ht-s">חֶבְרָה קַדִּישָׁא</span> <span class="ht-r">Chevrah Kadisha</span></span>
+  sit with the deceased and pray, reading Psalms or poetry. There is no formal liturgy for
+  <span class="ht" tabindex="0" data-s="שְׁמִירָה" data-r="Shmirah" data-t="Guarding — intentionally open and meditative, a liminal space between this world and the next"><span class="ht-s">שְׁמִירָה</span> <span class="ht-r">Shmirah</span></span>.
+  While the practice does not have the formal structure of the
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — a highly structured ritual with specific prayers and actions"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>,
+  it serves the purpose of being with the deceased in a quiet and meditative liminal space.</p>
+
+  <div class="divider">· · ✦ · ·</div>
+</article>
+<div class="art-nav"><a href="#art4">← Article 4</a><a href="#art6">Next Article →</a></div>
+
+<!-- ══════════════ ARTICLE 6 ══════════════ -->
+<nav class="sticky-nav">
+  <a href="#art5">← Article 5</a>
+  <span class="nav-title">Chevrah Kadisha Series</span>
+  <a href="#cover">↑ Contents</a>
+</nav>
+<article class="article" id="art6">
+  <div class="art-num">Article Six</div>
+  <h2>Honoring the Dead Across Traditions</h2>
+  <div class="art-heb" style="font-size:1.1rem; color:var(--muted);">Jewish &amp; Islamic Funeral Practices</div>
+  <hr class="art-rule">
+  <img src="ARTICLE_SIX_JEWISH_MUSLIM.jpeg" alt="Shiva and Iddah — Jewish and Muslim Funeral Traditions" class="art-img">
+
+  <p>Both Jewish and Islamic traditions place the highest importance on caring for the deceased with dignity, speed, and spiritual intention. Comparing our traditions reveals deep parallels — and meaningful differences — in how we accompany the dead on their final journey.</p>
+
+  <h3>Islamic Funeral Practices</h3>
+
+  <p>According to Islamic law (<em>shariah</em>), the body should be buried as soon as possible after death — a principle shared with Jewish tradition. A local Islamic community organization should be contacted immediately to help make arrangements, identify an appropriate funeral home, and coordinate with the family.</p>
+
+  <p>To prepare the body for burial, it must be washed (<em>Ghusl</em>) and shrouded (<em>Kafan</em>). Close same-sex family members are encouraged to perform the washing, though a spouse may also do so. The body is washed three times. This parallels the Jewish
+  <span class="ht" tabindex="0" data-s="טָהֳרָה" data-r="Taharah" data-t="Purification — the Jewish ritual washing of the deceased, also performed with same-gender teams, out of modesty and respect"><span class="ht-s">טָהֳרָה</span> <span class="ht-r">Taharah</span></span>
+  in its emphasis on ritual cleansing and same-gender care.</p>
+
+  <p>To shroud the body, three large white sheets of inexpensive material are laid on top of each other — a simplicity that mirrors the Jewish
+  <span class="ht" tabindex="0" data-s="תַּכְרִיכִים" data-r="tachrichim" data-t="Burial shrouds — simple white linen garments with no fasteners, affirming that all are equal in death"><span class="ht-s">תַּכְרִיכִים</span> <span class="ht-r">tachrichim</span></span>,
+  reminding both traditions that all are equal in death.</p>
+
+  <p>Organ donation is generally acceptable in Islam, following the Qur'an's teaching: <em>"Whosoever saves the life of one person it would be as if he saved the life of all mankind."</em> Cremation, however, is forbidden (<em>haram</em>) in Islam.</p>
+
+  <p>After the funeral and burial, the immediate family gathers and receives visitors. It is customary for the community to provide food for the first few days of mourning — typically three days. This parallels the Jewish tradition of
+  <span class="ht" tabindex="0" data-s="שִׁבְעָה" data-r="shiva" data-t='"Seven" — the seven-day mourning period during which the community comes to comfort the bereaved with visits, food, and presence'><span class="ht-s">שִׁבְעָה</span> <span class="ht-r">shiva</span></span>,
+  during which the community provides meals and comfort to mourners.</p>
+
+  <h3>What We Share</h3>
+  <ul>
+    <li><strong>Prompt burial:</strong> Both traditions call for burial ideally within a day or two of death.</li>
+    <li><strong>Simple white shrouds:</strong> Both use plain, inexpensive white garments, affirming equality and humility in death.</li>
+    <li><strong>Ritual washing:</strong> Both involve careful, modest washing of the body by same-gender community members.</li>
+    <li><strong>Community comfort:</strong> Both traditions gather to feed and comfort the bereaved in the days after burial.</li>
+    <li><strong>Simplicity over display:</strong> Both discourage elaborate display in favor of dignity.</li>
+  </ul>
+
+  <div class="divider">· · ✦ · ·</div>
+  <p style="text-align:center; color:var(--muted); font-style:italic; font-size:0.92rem; line-height:1.7;">
+    Future topics in this series:<br>
+    Planning for a Jewish Funeral · Jewish Cemetery Guidelines<br>
+    Bereavement Resources at Our Library · Jewish Funerals in Film &amp; Theater
+  </p>
+</article>
+<div class="art-nav"><a href="#art5">← Article 5</a><a href="#cover">↑ Contents</a></div>
+
+<!-- ══════════════ POPUP ══════════════ -->
+<div id="popup" role="tooltip" aria-live="polite">
+  <button id="pop-x" aria-label="Close">✕</button>
+  <span class="ps" id="ps"></span>
+  <span class="pr" id="pr"></span>
+  <span class="pt" id="pt"></span>
+</div>
+
+<script>
+(function(){
+  var popup = document.getElementById('popup');
+  var ps = document.getElementById('ps');
+  var pr = document.getElementById('pr');
+  var pt = document.getElementById('pt');
+  var active = null;
+
+  function show(el) {
+    ps.textContent = el.dataset.s || '';
+    pr.textContent = el.dataset.r || '';
+    pt.textContent = el.dataset.t || '';
+    popup.classList.add('show');
+    active = el;
+  }
+  function hide() {
+    popup.classList.remove('show');
+    active = null;
+  }
+
+  document.querySelectorAll('.ht').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.stopPropagation();
+      active === el ? hide() : show(el);
+    });
+    el.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); active === el ? hide() : show(el); }
+    });
+  });
+
+  document.getElementById('pop-x').addEventListener('click', hide);
+  document.addEventListener('click', function(e){
+    if (popup.classList.contains('show') && !popup.contains(e.target)) hide();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') hide();
+  });
+})();
+</script>
+</body>
+</html>
